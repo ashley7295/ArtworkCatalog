@@ -44,14 +44,14 @@ class Catalog:
                 result = conn.execute(add_sql, (art.artist, art.email, art.artpiece, art.price, art.available))
                 new_id= result.lastrowid
                 art.id = new_id
-        except 
+        except:
             print("This art piece has already been entered into the catalog")
         finally:
             conn.close()
 
     def _update_art(self, art):
         
-        if not art.id
+        if not art.id:
             print("Art does not have an ID, cannot update.")
         
         update_sql = 'UPDATE catalog SET artist = ?, email = ?, artpiece = ?, price = ?, available = ?, WHERE rowid = ?'

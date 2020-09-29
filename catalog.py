@@ -92,7 +92,7 @@ class Catalog:
 
         for r in rows:
 
-            art = ART(r['artist'], r['email'], r['artpiece'], r['price'], r['available'], r['rowid'])
+            art = Art(r['artist'], r['email'], r['artpiece'], r['price'], r['available'], r['rowid'])
             art_list.append(art)
         
         conn.close()
@@ -110,7 +110,7 @@ class Catalog:
         artist_list = []
 
         for r in rows:
-            art = ART(r['artist'], r['email'], r['artpiece'], r['price'], r['available'], r['rowid'])
+            art = Art(r['artist'], r['email'], r['artpiece'], r['price'], r['available'], r['rowid'])
             artist.append(art)
         
         conn.close()

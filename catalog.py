@@ -61,14 +61,14 @@ class Catalog:
             with sqlite3.connect(db) as conn:
                 result = conn.execute(add_sql, (artwork.name, artwork.price, artwork.available))
                 new_id= result.lastrowid
-                art.id = new_id
+                artwork.id = new_id
         except:
             print("This art piece has already been entered into the catalog")
         finally:
             conn.close()
     
 
-    def _add_artist(self, artwork):
+    def _add_artist(self, artist):
         
         add_sql = 'INSERT INTO artist (name, email) VALUES (?,?)'
         
@@ -76,7 +76,7 @@ class Catalog:
             with sqlite3.connect(db) as conn:
                 result = conn.execute(add_sql, (artist.name, artist.email))
                 new_id= result.lastrowid
-                art.id = new_id
+                artist.id = new_id
         except:
             print("This artist has already been entered into the catalog")
         finally:
@@ -167,23 +167,9 @@ class Catalog:
         return art_list
 
 
-    def  search_available_art(self, artist):
-
-        search_avail_artist_sql = ' SELECT rowid, * FROM catalog WHERE UPPER(artist) like UPPER(?) AND available = TRUE'
-
-        conn = sqlite3.connect(db)
-        conn.row_factory = sqlite3.Row
-        rows = conn.execute(search_avail_artist_sql, (artist, ))
-
-        artist_list = []
-
-        for r in rows:
-            art = Art(r['artist'], r['email'], r['rowid'])
-            artist.append(art)
+    #def  search_available_art(self, artist):
         
-        conn.close()
-
-        return artist_list
+       
 
 
 

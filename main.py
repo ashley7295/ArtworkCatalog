@@ -1,4 +1,4 @@
-from catalog import Art, Catalog
+from catalog import Artist, Artwork, Catalog
 
 
 

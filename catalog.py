@@ -1,4 +1,6 @@
 import sqlite3
+from peewee import *
+
 
 db = 'catalog.sqlite'
 
@@ -48,8 +50,8 @@ class Catalog:
 
     def __init__(self):
         with sqlite3.connect(db) as conn:
-            conn.execute('CREATE TABLE IF NOT EXISTS artist (name TEXT, email TEXT')
-            conn.execute('CREATE TABLE IF NOT EXISTS artwork (name TEXT, price INTEGER, available BOOLEAN, UNIQUE(name COLLATE NOCASE')
+            conn.execute('CREATE TABLE IF NOT EXISTS artist (name TEXT, email TEXT, PRIMARY KEY(name)')
+            conn.execute('CREATE TABLE IF NOT EXISTS artwork (name TEXT, price INTEGER, available BOOLEAN, PRIMARY KEY(name), FOREIGN KEY (artist) REFERENCES artist(name), UNIQUE(name COLLATE NOCASE')
         conn.close()
     
 
